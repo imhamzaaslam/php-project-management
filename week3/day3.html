@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 3 - Day 3: Arrays and Objects</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
+  </head>
+  <body class="bg-light">
+    <div class="container py-5">
+      <h1 class="mb-4">Day 3: Arrays and Objects</h1>
+      <p class="lead">Explore array methods, destructuring, spread syntax, objects, and optional chaining.</p>
+
+      <section class="mb-4">
+        <h2>Topics</h2>
+        <ul>
+          <li>Array methods: <code>map</code>, <code>filter</code>, <code>reduce</code>, <code>find</code></li>
+          <li>Destructuring arrays and objects</li>
+          <li>Spread syntax</li>
+          <li>Object shorthand</li>
+          <li>Optional chaining</li>
+        </ul>
+      </section>
+
+      <section class="card shadow-sm mb-4">
+        <div class="card-body">
+          <h3>Example code</h3>
+          <pre class="bg-dark text-white p-3 rounded"><code id="codeExample3"></code></pre>
+        </div>
+      </section>
+
+      <section class="card shadow-sm mb-4">
+        <div class="card-body">
+          <h3>Run demo</h3>
+          <button id="runDay3" class="btn btn-primary">Run demo</button>
+          <div id="outputDay3" class="mt-3 p-3 bg-white border rounded"></div>
+        </div>
+      </section>
+    </div>
+
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script>
+      const codeExample3 = `const students = [
+  { name: 'Amina', score: 92 },
+  { name: 'Bilal', score: 78 },
+  { name: 'Hira', score: 85 },
+];
+
+// map
+const names = students.map((student) => student.name);
+
+// filter
+const passed = students.filter((student) => student.score >= 80);
+
+// find
+const topStudent = students.find((student) => student.score > 90);
+
+// reduce
+const totalScore = students.reduce((sum, student) => sum + student.score, 0);
+
+// destructuring and spread
+const [firstStudent, ...otherStudents] = students;
+const studentCopy = { ...firstStudent, grade: 'A' };
+
+// optional chaining
+const topFriend = studentCopy.friend?.name || 'No friend listed';
+
+console.log(names, passed, topStudent, totalScore, studentCopy, topFriend);
+`;
+      document.getElementById('codeExample3').textContent = codeExample3;
+
+      document.getElementById('runDay3').addEventListener('click', function () {
+        const students = [
+          { name: 'Amina', score: 92 },
+          { name: 'Bilal', score: 78 },
+          { name: 'Hira', score: 85 },
+        ];
+
+        const names = students.map((student) => student.name);
+        const passed = students.filter((student) => student.score >= 80);
+        const topStudent = students.find((student) => student.score > 90);
+        const totalScore = students.reduce((sum, student) => sum + student.score, 0);
+        const [firstStudent, ...otherStudents] = students;
+        const studentCopy = { ...firstStudent, grade: 'A' };
+        const topFriend = studentCopy.friend?.name || 'No friend listed';
+
+        const output = [];
+        output.push(`Names: ${names.join(', ')}`);
+        output.push(`Passed: ${passed.map((s) => s.name).join(', ')}`);
+        output.push(`Top student: ${topStudent.name}`);
+        output.push(`Total score: ${totalScore}`);
+        output.push(`Copied student: ${studentCopy.name} (${studentCopy.grade})`);
+        output.push(`Friend: ${topFriend}`);
+
+        document.getElementById('outputDay3').textContent = output.join('\n');
+      });
+    </script>
+  </body>
+</html>

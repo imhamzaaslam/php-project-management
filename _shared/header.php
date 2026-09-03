@@ -28,10 +28,6 @@
                 <a class="nav-link active" aria-current="page" href="/php-project-management-course">Homepage</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/php-project-management-course/features.php">Features</a>
-              </li>
-
-              <li class="nav-item">
                 <a class="nav-link" href="/php-project-management-course/add_user_form.php">Add User</a>
               </li>
 

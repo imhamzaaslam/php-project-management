@@ -5,7 +5,7 @@
 $sql = "SELECT users.id, users.city, users.name, roles.title as role 
 FROM users 
 join roles ON users.role_id = roles.id
-where roles.title = 'Admin'
+
 ";
 
 $result = mysqli_query($conn, $sql);
@@ -29,6 +29,7 @@ $result = mysqli_query($conn, $sql);
                                 <th>Users Name</th>
                                 <th>City</th>
                                 <th>Role</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -38,6 +39,9 @@ $result = mysqli_query($conn, $sql);
                                     <td><?php echo $row['name']; ?></td>
                                     <td><?php echo $row['city']; ?></td>
                                     <td><?php echo $row['role']; ?></td>
+                                    <td>
+                                        <a href="add_user_form.php?user_id=<?php echo $row['id']; ?>"  class="btn btn-primary">Edit</a>
+                                        
                                 </tr>
                             <?php } ?>
                         </tbody>

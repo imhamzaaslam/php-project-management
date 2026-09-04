@@ -34,7 +34,7 @@ if(isset($_GET['user_id'])){
                             <p class="text-muted mb-4">Fill in the details below to add a new user.</p>
                             <?php  }  ?>
 
-                            <form action="store_user_data.php" method="POST">
+                            <form action="store_user_data.php" method="POST" enctype="multipart/form-data">
 
                                 <?php if($editMode){ ?>
                                 <input type="hidden" value="<?php echo $userId; ?>" name="user_id">
@@ -49,6 +49,13 @@ if(isset($_GET['user_id'])){
                                     <label for="city" class="form-label fw-semibold">City</label>
                                     <input type="text" class="form-control form-control-lg" value="<?php echo htmlspecialchars($city); ?>" name="city" id="city" placeholder="Enter city" required>
                                 </div>
+
+                                <div class="mb-4">
+                                    <label for="avatar" class="form-label fw-semibold">Avatar</label>
+                                    <input type="file" class="form-control form-control-lg" name="avatar" id="avatar" placeholder="Upload avatar">
+                                </div>
+
+
 
                                 <div class="d-grid">
                                     <button class="btn btn-primary btn-lg" type="submit" name="submit_button">

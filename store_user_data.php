@@ -15,6 +15,33 @@ if (isset($_POST['submit_button'])) {
   $name = $_POST["name"];
   $city = $_POST["city"];
 
+  //get file from form and save it.
+
+  $avatar = $_FILES['avatar'];
+
+  if ($avatar['error'] === UPLOAD_ERR_OK) {
+    $avatarName = $avatar['name'];
+    $avatarTmpName = $avatar['tmp_name'];
+    $avatarSize = $avatar['size'];
+    $avatarType = $avatar['type'];
+
+    // Generate a unique filename to avoid overwriting existing files
+    $uniqueFilename = uniqid() . '_' . basename($avatarName);
+    $uploadDir = 'uploads/'; // Make sure this directory exists and is writable
+    $uploadPath = $uploadDir . $uniqueFilename;
+
+    // Move the uploaded file to the desired location
+    if (move_uploaded_file($avatarTmpName, $uploadPath)) {
+      
+      // You can save the filename in the database if needed
+    } else {
+      echo "Error uploading avatar.";
+      exit();
+    }
+  } else {
+    echo "No avatar uploaded or there was an upload error.";
+  }
+
 
   if (isset($_POST['user_id'])) {
     $userId = $_POST['user_id'];
@@ -22,7 +49,7 @@ if (isset($_POST['submit_button'])) {
     $message = "Record updated";
     } else {
       
-      $sql = "INSERT INTO users (name, role_id) VALUES ('$name', 1) ";
+      $sql = "INSERT INTO users (name, role_id, avatar) VALUES ('$name', 1, '$uniqueFilename') ";
       $message = "Record Created";
   }
 
